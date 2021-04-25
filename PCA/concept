@@ -1,5 +1,5 @@
 
-** 1. ** If a Y variable exists and is part of your data, then separate your data into Y and X.
+1. If a Y variable exists and is part of your data, then separate your data into Y and X.
 
 2. Take the matrix of independent variables X and, for each column, subtract the mean of that column from each entry. (This ensures that each column has a mean of zero.)
 
