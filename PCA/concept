@@ -4,10 +4,10 @@
 2. Take the matrix of independent variables X and, for each column, subtract the mean of that column from each entry. (This ensures that each column has a mean of zero.)
 
 3. Decide whether or not to standardize. Given the columns of X, are features with higher variance more important than features with lower variance, or is the importance of 
-   features independent of the variance? (In this case, importance means how well that feature predicts Y.) If the importance of features is independent of the variance of the 
-   features, then divide each observation in a column by that column’s standard deviation. (This, combined with step 2, standardizes each column of X to make sure each column has 
-   mean zero and standard deviation 1.) Call the centered (and possibly standardized) matrix Z. If importance of feature does not dpends on the variation, then dividing it by SD 
-   won't make much differnece.
+   features independent of the variance? (In this case, importance means how well that feature predicts Y.) If the importance of features is independent of the variance of 
+   the features, then divide each observation in a column by that column’s standard deviation. (This, combined with step 2, standardizes each column of X to make sure each 
+   column has mean zero and standard deviation 1.) Call the centered (and possibly standardized) matrix Z. If importance of feature does not dpends on the variation, then 
+   dividing it by SD won't make much differnece.
 
 4. Take the matrix Z and calculate ZᵀZ. The resulting matrix is the covariance matrix of Z, up to a constant.
 
