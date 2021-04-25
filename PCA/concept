@@ -1,0 +1,29 @@
+
+** 1. ** If a Y variable exists and is part of your data, then separate your data into Y and X.
+
+2. Take the matrix of independent variables X and, for each column, subtract the mean of that column from each entry. (This ensures that each column has a mean of zero.)
+
+3. Decide whether or not to standardize. Given the columns of X, are features with higher variance more important than features with lower variance, or is the importance of features independent of the variance? (In this case, importance means how well that feature predicts Y.) If the importance of features is independent of the variance of the features, then divide each observation in a column by that column’s standard deviation. (This, combined with step 2, standardizes each column of X to make sure each column has mean zero and standard deviation 1.) Call the centered (and possibly standardized) matrix Z. If importance of feature does not dpends on the variation, then dividing it by SD won't make much differnece.
+
+4. Take the matrix Z and calculate ZᵀZ. The resulting matrix is the covariance matrix of Z, up to a constant.
+
+5. Calculate the eigenvectors and their corresponding eigenvalues of ZᵀZ. The eigendecomposition of ZᵀZ is where we decompose ZᵀZ into PDP⁻¹, where P is the matrix of eigenvectors and D is the diagonal matrix with eigenvalues on the diagonal and zero everywhere else. The eigenvalues on the diagonal of D will be associated with the corresponding column in P.
+ 
+5. Take the eigenvalues λ1, λ2, …, λp and sort them from largest to smallest. In doing so, sort the eigenvectors in P accordingly, so that a eigen value after sorting syncs its position to the its  corresponding eigen vector in P. Call this sorted matrix of eigenvectors P*.
+
+6. Calculate Z* = ZP*. This new matrix, Z*, is a centered/standardized version of X but now each observation is a combination of the original variables, where the weights are determined by the eigenvector. As our eigenvectors in P* are independent of one another, each column of Z* is also independent of one another!
+
+7. The principal components are perpendicular to one another. In fact, every principal component will ALWAYS be orthogonal to every other principal component.Because our principal components are orthogonal to one another, they are statistically linearly independent of one another… which is why our columns of Z* are linearly independent of one another!
+
+
+8. Finally, we need to determine how many features to keep versus how many to drop. There are three common methods to determine this, discussed below and followed by an explicit example:
+
+        Method 1: We arbitrarily select how many dimensions we want to keep. Perhaps I want to visually represent things in two dimensions, so I may only keep two features. This is use-case dependent and there isn’t a hard-and-fast rule for how many features I should pick.
+
+        Method 2: Calculate the proportion of variance explained (briefly explained below) for each feature, pick a threshold, and add features until you hit that threshold. (For example, if you want to explain 80% of the total variability possibly explained by your model, add features with the largest explained proportion of variance until your proportion of variance explained hits or exceeds 80%.)
+
+        Method 3: This is closely related to Method 2. Calculate the proportion of variance explained for each feature, sort features by proportion of variance explained and plot the cumulative proportion of variance explained as you keep more features. (This plot is called a scree plot, shown below.) One can pick how many features to include by identifying the point where adding a new feature has a significant drop in variance explained relative to the previous feature, and choosing features up until that point. (I call this the “find the elbow” method, as looking at the “bend” or “elbow” in the scree plot determines where the biggest drop in proportion of variance explained occurs.)
+
+
+ref: https://towardsdatascience.com/a-one-stop-shop-for-principal-component-analysis-5582fb7e0a9c
+Geometrical Interpritation: https://www.youtube.com/watch?v=FgakZw6K1QQ
